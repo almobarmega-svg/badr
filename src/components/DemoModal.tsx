@@ -101,7 +101,7 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-slate-50">
           <div>
-            <span className="text-xs font-bold text-blue-600 block mb-0.5">
+            <span className="text-xs font-bold text-slate-900 block mb-0.5">
               شركة البدر للبرمجيات
             </span>
             <h3 className="text-lg font-bold text-slate-900">
@@ -110,7 +110,7 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-200/50 rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-blue-600"
+            className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-200/50 rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-slate-900"
             aria-label="إغلاق النافذة"
           >
             <X className="w-5 h-5" />
@@ -168,8 +168,8 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                   placeholder="مثال: عبد الله السعيد"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
-                    errors.fullName ? 'border-red-500' : 'border-slate-300 focus:border-blue-600'
+                  className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900/10 ${
+                    errors.fullName ? 'border-red-500' : 'border-slate-300 focus:border-slate-900'
                   }`}
                 />
                 {errors.fullName && <p className="text-[11px] text-red-600 mt-1">{errors.fullName}</p>}
@@ -186,8 +186,8 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                     placeholder="+966 5x xxx xxxx"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
-                      errors.phone ? 'border-red-500' : 'border-slate-300 focus:border-blue-600'
+                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900/10 ${
+                      errors.phone ? 'border-red-500' : 'border-slate-300 focus:border-slate-900'
                     }`}
                   />
                   {errors.phone && <p className="text-[11px] text-red-600 mt-1">{errors.phone}</p>}
@@ -203,8 +203,8 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                     placeholder="name@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
-                      errors.email ? 'border-red-500' : 'border-slate-300 focus:border-blue-600'
+                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900/10 ${
+                      errors.email ? 'border-red-500' : 'border-slate-300 focus:border-slate-900'
                     }`}
                   />
                   {errors.email && <p className="text-[11px] text-red-600 mt-1">{errors.email}</p>}
@@ -221,8 +221,8 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                     placeholder="مثال: شركة النخبة للمواد الغذائية"
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20 ${
-                      errors.companyName ? 'border-red-500' : 'border-slate-300 focus:border-blue-600'
+                    className={`w-full px-3.5 py-2.5 text-sm rounded-lg border bg-white text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900/10 ${
+                      errors.companyName ? 'border-red-500' : 'border-slate-300 focus:border-slate-900'
                     }`}
                   />
                   {errors.companyName && <p className="text-[11px] text-red-600 mt-1">{errors.companyName}</p>}
@@ -235,7 +235,7 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                   <select
                     value={formData.branchesCount}
                     onChange={(e) => setFormData({ ...formData, branchesCount: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-blue-600"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-slate-900"
                   >
                     <option value="1 فرع">1 فرع (نقطة واحدة)</option>
                     <option value="2 إلى 4 فروع">2 إلى 4 فروع</option>
@@ -252,7 +252,7 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                 <select
                   value={formData.systemInterest}
                   onChange={(e) => setFormData({ ...formData, systemInterest: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-blue-600 font-medium"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-slate-900 font-medium"
                 >
                   {PRODUCTS_DATA.map((prod) => (
                     <option key={prod.id} value={prod.name}>
@@ -273,7 +273,7 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                   placeholder="أي تفاصيل ترغب في مشاركتها معنا بخصوص طبيعة نشاطك..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full px-3.5 py-2 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-blue-600 resize-none"
+                  className="w-full px-3.5 py-2 text-sm rounded-lg border border-slate-300 bg-white text-slate-900 focus:outline-none focus:border-slate-900 resize-none"
                 />
               </div>
 
@@ -281,7 +281,7 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.98] rounded-xl transition-all shadow-sm disabled:opacity-50"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 active:scale-[0.98] rounded-xl transition-all shadow-sm disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <span>جاري إرسال الطلب...</span>
@@ -300,7 +300,7 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
                 <a
                   href={`tel:${COMPANY_INFO.phone.replace(/\s+/g, '')}`}
                   dir="ltr"
-                  className="text-blue-600 font-mono font-bold hover:underline"
+                  className="text-slate-900 font-mono font-bold hover:underline"
                 >
                   {COMPANY_INFO.phone}
                 </a>

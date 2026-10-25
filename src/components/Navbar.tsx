@@ -1,109 +1,93 @@
 import { useState } from 'react';
-import { Layers, Menu, X, ArrowUpRight, PhoneCall, LayoutDashboard, Sparkles } from 'lucide-react';
-import { COMPANY_INFO } from '../data/companyData';
+import { Menu, X, ArrowUpRight, LayoutDashboard, Sparkles } from 'lucide-react';
+import AlBadrLogo from './brand/AlBadrLogo';
 
 interface NavbarProps {
+  activePage: 'home' | 'solutions' | 'zatca' | 'roi' | 'admin';
+  onChangePage: (page: 'home' | 'solutions' | 'zatca' | 'roi' | 'admin') => void;
   onOpenDemo: (systemPreference?: string) => void;
-  onOpenCalculator: () => void;
-  onOpenAdmin: () => void;
   onOpenPosSimulator: () => void;
 }
 
 export default function Navbar({
+  activePage,
+  onChangePage,
   onOpenDemo,
-  onOpenCalculator,
-  onOpenAdmin,
   onOpenPosSimulator,
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const navItems: { id: 'home' | 'solutions' | 'zatca' | 'roi'; label: string }[] = [
+    { id: 'home', label: 'الرئيسية' },
+    { id: 'solutions', label: 'مركز الأنظمة التفاعلي' },
+    { id: 'zatca', label: 'محاكي الفاتورة ZATCA' },
+    { id: 'roi', label: 'حاسبة العائد المالي' },
+  ];
+
   return (
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Strict 3-Zone Top Bar Contract */}
-        <div className="flex items-center justify-between gap-8 h-18">
+        {/* Strict 3-Zone Top Bar Contract in Navy Blue & White */}
+        <div className="flex items-center justify-between gap-6 h-18">
           
-          {/* Zone 1: Single-element Brand Wordmark */}
-          <a
-            href="#"
-            className="flex items-center gap-3 text-slate-900 group whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-600 rounded-sm"
+          {/* Zone 1: Bespoke Brand Emblem & Wordmark */}
+          <button
+            onClick={() => onChangePage('home')}
+            className="flex items-center text-right group whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-slate-900 rounded-sm"
           >
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-sm transition-transform group-hover:scale-105">
-              <Layers className="w-5 h-5" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tight text-slate-900">
-                {COMPANY_INFO.name}
-              </span>
-            </div>
-          </a>
+            <AlBadrLogo size="md" />
+          </button>
 
-          {/* Zone 2: Concise Single-Line Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600">
-            <a
-              href="#products"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 py-1"
-            >
-              الأنظمة والحلول
-            </a>
-            <a
-              href="#services"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 py-1"
-            >
-              الخدمات التقنية
-            </a>
-            <a
-              href="#calculator"
-              onClick={(e) => {
-                e.preventDefault();
-                onOpenCalculator();
-                const el = document.getElementById('calculator');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 py-1"
-            >
-              حاسبة الباقات
-            </a>
-            <a
-              href="#case-studies"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 py-1"
-            >
-              قصص النجاح
-            </a>
-            <a
-              href="#faq"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 py-1"
-            >
-              الأسئلة الشائعة
-            </a>
+          {/* Zone 2: Concise Navigation Links with Navy Active Highlight */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-xs xl:text-sm font-semibold text-slate-700">
+            {navItems.map((item) => {
+              const isActive = activePage === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => onChangePage(item.id)}
+                  className={`px-3.5 py-2 rounded-lg transition-all whitespace-nowrap shrink-0 ${
+                    isActive
+                      ? 'bg-[#0F172A] text-white font-bold shadow-xs'
+                      : 'hover:text-slate-950 hover:bg-slate-100 text-slate-700'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </nav>
 
-          {/* Zone 3: Actions - Interactive POS, Admin Panel & CTA */}
+          {/* Zone 3: Actions - POS Simulator, Admin Portal & Primary CTA in Navy & White */}
           <div className="hidden sm:flex items-center gap-2.5 shrink-0">
-            {/* Interactive POS Demo Button */}
+            {/* Live POS simulator */}
             <button
               onClick={onOpenPosSimulator}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors whitespace-nowrap"
-              title="تجربة واجهة الكاشير ونقاط البيع السحابية"
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors whitespace-nowrap border border-slate-200"
+              title="تجربة كاشير نقاط البيع"
             >
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>المحاكي التفاعلي</span>
+              <Sparkles className="w-3.5 h-3.5 text-slate-700" />
+              <span>محاكي الكاشير</span>
             </button>
 
-            {/* Admin Dashboard Button */}
+            {/* Admin Dashboard */}
             <button
-              onClick={onOpenAdmin}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-blue-800 bg-blue-50 border border-blue-200 hover:bg-blue-100 rounded-lg transition-colors whitespace-nowrap"
-              title="الدخول إلى لوحة إدارة المنتجات والمبيعات"
+              onClick={() => onChangePage('admin')}
+              className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-lg transition-colors whitespace-nowrap border ${
+                activePage === 'admin'
+                  ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-xs'
+                  : 'text-slate-800 bg-white border-slate-300 hover:bg-slate-50'
+              }`}
+              title="لوحة إدارة المنتجات والعملاء والمبيعات"
             >
-              <LayoutDashboard className="w-3.5 h-3.5 text-blue-600" />
-              <span>لوحة التحكم والإدارة</span>
+              <LayoutDashboard className="w-3.5 h-3.5 text-slate-700" />
+              <span>لوحة التحكم</span>
             </button>
 
-            {/* Primary Action CTA */}
+            {/* Primary Action CTA in Deep Navy */}
             <button
               onClick={() => onOpenDemo()}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 active:scale-[0.98] transition-all whitespace-nowrap shadow-xs"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] active:scale-[0.98] rounded-lg transition-all whitespace-nowrap shadow-xs"
             >
               <span>طلب عرض تجريبي</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -113,15 +97,15 @@ export default function Navbar({
           {/* Mobile Toggle Button */}
           <div className="flex items-center gap-2 lg:hidden">
             <button
-              onClick={onOpenAdmin}
-              className="px-2.5 py-1.5 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 rounded-md"
+              onClick={() => onChangePage('admin')}
+              className="px-2.5 py-1.5 text-xs font-bold text-white bg-[#0F172A] rounded-md"
             >
               لوحة التحكم
             </button>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-slate-900 rounded-lg hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-blue-600"
+              className="p-2 text-slate-700 hover:text-slate-900 rounded-lg hover:bg-slate-100"
               aria-label="القائمة الرئيسية"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -133,72 +117,51 @@ export default function Navbar({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3">
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onOpenPosSimulator();
-            }}
-            className="w-full text-right px-3 py-2 text-sm font-bold text-blue-700 bg-blue-50 rounded-lg flex items-center justify-between"
-          >
-            <span>المحاكي التفاعلي للكاشير (ZATCA)</span>
-            <Sparkles className="w-4 h-4 text-blue-600" />
-          </button>
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onOpenAdmin();
-            }}
-            className="w-full text-right px-3 py-2 text-sm font-bold text-slate-800 bg-slate-100 rounded-lg flex items-center justify-between"
-          >
-            <span>لوحة التحكم وإدارة المنتجات والعملاء</span>
-            <LayoutDashboard className="w-4 h-4 text-slate-600" />
-          </button>
-          <a
-            href="#products"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
-          >
-            الأنظمة والحلول
-          </a>
-          <a
-            href="#services"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
-          >
-            الخدمات التقنية
-          </a>
-          <a
-            href="#calculator"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onOpenCalculator();
-            }}
-            className="block px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
-          >
-            حاسبة الباقات والتكلفة
-          </a>
-          <a
-            href="#case-studies"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
-          >
-            قصص النجاح
-          </a>
-          <a
-            href="#faq"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
-          >
-            الأسئلة الشائعة
-          </a>
+        <div className="lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                onChangePage(item.id);
+                setMobileMenuOpen(false);
+              }}
+              className={`w-full text-right px-3 py-2 text-sm font-semibold rounded-lg ${
+                activePage === item.id ? 'bg-[#0F172A] text-white font-bold' : 'text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+
           <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
             <button
               onClick={() => {
+                onOpenPosSimulator();
                 setMobileMenuOpen(false);
-                onOpenDemo();
               }}
-              className="w-full py-2.5 px-4 text-center text-sm font-semibold text-white bg-blue-600 rounded-lg"
+              className="w-full text-right px-3 py-2 text-sm font-bold text-slate-900 bg-slate-100 rounded-lg flex items-center justify-between"
+            >
+              <span>محاكي الكاشير التفاعلي</span>
+              <Sparkles className="w-4 h-4 text-slate-700" />
+            </button>
+
+            <button
+              onClick={() => {
+                onChangePage('admin');
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-right px-3 py-2 text-sm font-bold text-white bg-[#0F172A] rounded-lg flex items-center justify-between"
+            >
+              <span>لوحة التحكم والإدارة</span>
+              <LayoutDashboard className="w-4 h-4 text-slate-300" />
+            </button>
+
+            <button
+              onClick={() => {
+                onOpenDemo();
+                setMobileMenuOpen(false);
+              }}
+              className="w-full py-2.5 px-4 text-center text-sm font-bold text-white bg-[#0F172A] rounded-lg"
             >
               طلب عرض تجريبي مجاني
             </button>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { FAQS_DATA } from '../data/companyData';
 
 export default function FaqSection() {
@@ -15,10 +15,10 @@ export default function FaqSection() {
         
         {/* Header */}
         <div className="text-center mb-14">
-          <div className="text-xs font-bold text-blue-700 mb-2">
+          <div className="text-xs font-bold text-slate-800 mb-2 uppercase tracking-wide">
             مركز المعلومات
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight text-balance">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight text-balance">
             الأسئلة الأكثر شيوعاً
           </h2>
           <p className="mt-3 text-base text-slate-600 max-w-xl mx-auto text-balance">
@@ -38,15 +38,15 @@ export default function FaqSection() {
                 <button
                   type="button"
                   onClick={() => toggleFaq(idx)}
-                  className="w-full py-4 px-6 text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base focus-visible:outline-2 focus-visible:outline-blue-600"
+                  className="w-full py-4 px-6 text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base focus-visible:outline-2 focus-visible:outline-slate-900"
                 >
                   <span className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A] shrink-0" />
                     <span>{faq.question}</span>
                   </span>
                   <ChevronDown
                     className={`w-5 h-5 text-slate-400 transition-transform duration-200 shrink-0 ${
-                      isOpen ? 'rotate-180 text-blue-600' : ''
+                      isOpen ? 'rotate-180 text-slate-900' : ''
                     }`}
                   />
                 </button>
@@ -54,7 +54,7 @@ export default function FaqSection() {
                 {isOpen && (
                   <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
                     <p>{faq.answer}</p>
-                    <div className="mt-3 text-[11px] text-blue-600 font-medium">
+                    <div className="mt-3 text-[11px] text-[#0F172A] font-bold">
                       التصنيف: {faq.category}
                     </div>
                   </div>

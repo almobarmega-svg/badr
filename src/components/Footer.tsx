@@ -1,11 +1,13 @@
-import { Layers, Phone, Mail, MapPin, ArrowUp, MessageSquare } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowUp, MessageSquare, ShieldCheck } from 'lucide-react';
+import AlBadrLogo from './brand/AlBadrLogo';
 import { COMPANY_INFO } from '../data/companyData';
 
 interface FooterProps {
   onOpenDemo: () => void;
+  onChangePage?: (page: 'home' | 'solutions' | 'zatca' | 'roi' | 'admin') => void;
 }
 
-export default function Footer({ onOpenDemo }: FooterProps) {
+export default function Footer({ onOpenDemo, onChangePage }: FooterProps) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -19,13 +21,8 @@ export default function Footer({ onOpenDemo }: FooterProps) {
           
           {/* Brand & Mission (5 cols) */}
           <div className="lg:col-span-5 text-right">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white">
-                <Layers className="w-5 h-5" />
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white">
-                {COMPANY_INFO.name}
-              </span>
+            <div className="mb-4">
+              <AlBadrLogo variant="dark" size="md" />
             </div>
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm mb-6">
@@ -39,7 +36,7 @@ export default function Footer({ onOpenDemo }: FooterProps) {
                 dir="ltr"
                 className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-colors"
               >
-                <Phone className="w-3.5 h-3.5 text-blue-400" />
+                <Phone className="w-3.5 h-3.5 text-slate-300" />
                 <span className="font-mono tabular-nums">{COMPANY_INFO.phone}</span>
               </a>
 
@@ -55,36 +52,51 @@ export default function Footer({ onOpenDemo }: FooterProps) {
             </div>
           </div>
 
-          {/* Navigation Links (3 cols) */}
+          {/* Navigation Links & Interactive Hubs (3 cols) */}
           <div className="lg:col-span-3 text-right">
             <div className="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">
-              الأنظمة والحلول
+              الصفحات والمختبر التفاعلي
             </div>
             <ul className="space-y-2.5 text-xs text-slate-400">
               <li>
-                <a href="#products" className="hover:text-blue-400 transition-colors">
-                  البدر للمبيعات ونقاط البيع (POS)
-                </a>
+                <button
+                  onClick={() => onChangePage?.('home')}
+                  className="hover:text-white transition-colors text-right"
+                >
+                  الصفحة الرئيسية
+                </button>
               </li>
               <li>
-                <a href="#products" className="hover:text-blue-400 transition-colors">
-                  البدر لإدارة المؤسسات والمخازن (ERP)
-                </a>
+                <button
+                  onClick={() => onChangePage?.('solutions')}
+                  className="hover:text-white transition-colors text-right"
+                >
+                  مركز الحلول ومحاكي المستودعات
+                </button>
               </li>
               <li>
-                <a href="#products" className="hover:text-blue-400 transition-colors">
-                  تطبيقات المناديب والمتاجر الذكية
-                </a>
+                <button
+                  onClick={() => onChangePage?.('zatca')}
+                  className="hover:text-white transition-colors text-right"
+                >
+                  محاكي الفاتورة ZATCA (المرحلة 2)
+                </button>
               </li>
               <li>
-                <a href="#products" className="hover:text-blue-400 transition-colors">
-                  البدر لإدارة العيادات والمراكز الطبية
-                </a>
+                <button
+                  onClick={() => onChangePage?.('roi')}
+                  className="hover:text-white transition-colors text-right"
+                >
+                  حاسبة العائد والوفر السنوي
+                </button>
               </li>
               <li>
-                <a href="#services" className="hover:text-blue-400 transition-colors">
-                  الربط بالفاتورة الإلكترونية (ZATCA)
-                </a>
+                <button
+                  onClick={() => onChangePage?.('admin')}
+                  className="text-white hover:text-slate-300 font-bold transition-colors text-right underline underline-offset-4 decoration-slate-600"
+                >
+                  لوحة التحكم والإدارة (Admin)
+                </button>
               </li>
             </ul>
           </div>
@@ -97,7 +109,7 @@ export default function Footer({ onOpenDemo }: FooterProps) {
             <div className="space-y-3 text-xs text-slate-400">
               {COMPANY_INFO.locations.map((loc, idx) => (
                 <div key={idx} className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-slate-300 shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-slate-200 block">
                       {loc.city} - {loc.country}
@@ -107,7 +119,7 @@ export default function Footer({ onOpenDemo }: FooterProps) {
                 </div>
               ))}
               <div className="pt-2 flex items-center gap-2 text-slate-400 text-xs">
-                <Mail className="w-3.5 h-3.5 text-blue-400" />
+                <Mail className="w-3.5 h-3.5 text-slate-300" />
                 <span>{COMPANY_INFO.email}</span>
               </div>
             </div>
@@ -122,7 +134,10 @@ export default function Footer({ onOpenDemo }: FooterProps) {
           </div>
 
           <div className="flex items-center gap-6">
-            <span>معتمد لهيئة الزكاة والضريبة والجمارك ZATCA</span>
+            <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
+              <ShieldCheck className="w-4 h-4" />
+              <span>معتمد لهيئة الزكاة والضريبة والجمارك ZATCA</span>
+            </span>
             <span aria-hidden="true">·</span>
             <button
               onClick={scrollToTop}

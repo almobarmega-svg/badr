@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { 
-  Plus, Search, FileText, CheckCircle2, AlertCircle, 
-  Printer, X, Eye, ShieldCheck, CreditCard, Banknote
+  Plus, Search, Printer, X, Eye, ShieldCheck
 } from 'lucide-react';
 import { SaleRecord, CustomerRecord, ProductRecord } from '../../types';
 
@@ -144,21 +143,21 @@ export default function SalesManager({
   return (
     <div className="space-y-6 text-right">
       
-      {/* 4 Quantitative KPI Cards */}
+      {/* 4 Quantitative KPI Cards in Navy & White */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-5 rounded-xl border border-slate-200">
           <span className="text-xs text-slate-500 block mb-1">إجمالي المبيعات المحصلة</span>
-          <div className="text-2xl font-black text-slate-900 font-mono tabular-nums">
+          <div className="text-2xl font-black text-[#0F172A] font-mono tabular-nums">
             {totalRevenue.toLocaleString('en-US')} <span className="text-xs font-sans">ر.س</span>
           </div>
-          <span className="text-[11px] text-emerald-600 font-semibold block mt-1">
+          <span className="text-[11px] text-emerald-600 font-bold block mt-1">
             صافي بعد الضريبة والخصومات
           </span>
         </div>
 
         <div className="bg-white p-5 rounded-xl border border-slate-200">
           <span className="text-xs text-slate-500 block mb-1">ضريبة القيمة المضافة ZATCA (15%)</span>
-          <div className="text-2xl font-black text-blue-600 font-mono tabular-nums">
+          <div className="text-2xl font-black text-slate-800 font-mono tabular-nums">
             {totalVat.toLocaleString('en-US')} <span className="text-xs font-sans">ر.س</span>
           </div>
           <span className="text-[11px] text-slate-400 block mt-1">
@@ -168,7 +167,7 @@ export default function SalesManager({
 
         <div className="bg-white p-5 rounded-xl border border-slate-200">
           <span className="text-xs text-slate-500 block mb-1">الفواتير المسددة</span>
-          <div className="text-2xl font-black text-slate-900 font-mono tabular-nums">
+          <div className="text-2xl font-black text-[#0F172A] font-mono tabular-nums">
             {paidCount} <span className="text-xs font-sans">فاتورة</span>
           </div>
           <span className="text-[11px] text-slate-400 block mt-1">
@@ -178,7 +177,7 @@ export default function SalesManager({
 
         <div className="bg-white p-5 rounded-xl border border-slate-200">
           <span className="text-xs text-slate-500 block mb-1">متوسط قيمة العملية (AOV)</span>
-          <div className="text-2xl font-black text-slate-900 font-mono tabular-nums">
+          <div className="text-2xl font-black text-[#0F172A] font-mono tabular-nums">
             {Math.round(avgTicket).toLocaleString('en-US')} <span className="text-xs font-sans">ر.س</span>
           </div>
           <span className="text-[11px] text-slate-400 block mt-1">
@@ -197,7 +196,7 @@ export default function SalesManager({
               placeholder="ابحث برقم الفاتورة، العميل، الشركة..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pr-9 pl-4 py-2 text-xs rounded-lg border border-slate-200 bg-white text-slate-900 focus:outline-none focus:border-blue-600"
+              className="w-full pr-9 pl-4 py-2 text-xs rounded-lg border border-slate-200 bg-white text-slate-900 focus:outline-none focus:border-slate-900"
             />
           </div>
 
@@ -228,18 +227,18 @@ export default function SalesManager({
             setDiscount(0);
             setIsNewSaleOpen(true);
           }}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-xs"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-lg transition-colors shadow-xs"
         >
           <Plus className="w-4 h-4" />
           <span>إصدار فاتورة بيع جديدة</span>
         </button>
       </div>
 
-      {/* Sales Invoices Table */}
+      {/* Sales Invoices Table in Navy & White */}
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-right text-xs">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold">
+            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-bold">
               <tr>
                 <th className="py-3 px-4">رقم الفاتورة</th>
                 <th className="py-3 px-4">التاريخ</th>
@@ -262,7 +261,7 @@ export default function SalesManager({
                 </tr>
               ) : (
                 filteredSales.map((s) => (
-                  <tr key={s.id} className="hover:bg-slate-50/80 transition-colors">
+                  <tr key={s.id} className="hover:bg-slate-50 transition-colors">
                     <td className="py-3 px-4 font-mono font-bold text-slate-900">
                       {s.invoiceNumber}
                     </td>
@@ -284,10 +283,10 @@ export default function SalesManager({
                     <td className="py-3 px-4 font-mono tabular-nums text-slate-500">
                       +{s.vatAmount.toFixed(2)} ر.س
                     </td>
-                    <td className="py-3 px-4 font-mono font-bold text-blue-700 tabular-nums">
+                    <td className="py-3 px-4 font-mono font-black text-[#0F172A] tabular-nums">
                       {s.grandTotal.toFixed(2)} ر.س
                     </td>
-                    <td className="py-3 px-4 text-slate-600">
+                    <td className="py-3 px-4 text-slate-700 font-medium">
                       {s.paymentMethod}
                     </td>
                     <td className="py-3 px-4">
@@ -296,7 +295,7 @@ export default function SalesManager({
                         onChange={(e: any) => onUpdateSaleStatus(s.id, e.target.value)}
                         className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
                           s.paymentStatus === 'paid'
-                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                            ? 'bg-slate-100 text-slate-900 border-slate-300'
                             : s.paymentStatus === 'pending'
                             ? 'bg-amber-50 text-amber-700 border-amber-200'
                             : 'bg-red-50 text-red-700 border-red-200'
@@ -310,7 +309,7 @@ export default function SalesManager({
                     <td className="py-3 px-4 text-center">
                       <button
                         onClick={() => setSelectedInvoiceForView(s)}
-                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded"
+                        className="p-1.5 text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded"
                         title="معاينة الفاتورة الضريبية"
                       >
                         <Eye className="w-4 h-4" />
@@ -348,7 +347,7 @@ export default function SalesManager({
                 <select
                   value={selectedCustomerId}
                   onChange={(e) => setSelectedCustomerId(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-blue-600"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-slate-900"
                 >
                   {customers.map((c) => (
                     <option key={c.id} value={c.id}>
@@ -367,7 +366,7 @@ export default function SalesManager({
                   <button
                     type="button"
                     onClick={addItemRow}
-                    className="text-xs text-blue-600 font-bold hover:underline"
+                    className="text-xs text-[#0F172A] font-bold hover:underline"
                   >
                     + إضافة بند آخر
                   </button>
@@ -427,7 +426,7 @@ export default function SalesManager({
                     min="0"
                     value={discount}
                     onChange={(e) => setDiscount(Number(e.target.value))}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 font-mono text-slate-900 focus:outline-none focus:border-blue-600"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 font-mono text-slate-900 focus:outline-none focus:border-slate-900"
                   />
                 </div>
 
@@ -438,7 +437,7 @@ export default function SalesManager({
                   <select
                     value={paymentMethod}
                     onChange={(e: any) => setPaymentMethod(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-blue-600"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-slate-900"
                   >
                     <option value="مدى (Mada)">مدى (Mada)</option>
                     <option value="تحويل بنكي">تحويل بنكي</option>
@@ -462,16 +461,16 @@ export default function SalesManager({
                   <span>ضريبة القيمة المضافة ZATCA (15%):</span>
                   <span className="font-mono tabular-nums">+{calculatedVat.toFixed(2)} ر.س</span>
                 </div>
-                <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-bold text-slate-900">
+                <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-black text-slate-900">
                   <span>المبلغ الإجمالي النهائي:</span>
-                  <span className="font-mono tabular-nums text-emerald-600">{calculatedGrandTotal.toFixed(2)} ر.س</span>
+                  <span className="font-mono tabular-nums text-[#0F172A]">{calculatedGrandTotal.toFixed(2)} ر.س</span>
                 </div>
               </div>
 
               <div className="flex gap-3 pt-3">
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 px-4 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                  className="flex-1 py-2.5 px-4 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-lg transition-colors"
                 >
                   اعتماد وحفظ الفاتورة
                 </button>
@@ -494,10 +493,10 @@ export default function SalesManager({
           <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-300 overflow-hidden text-right my-8 p-6 sm:p-8">
             <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-4">
               <div>
-                <span className="text-[11px] font-mono text-emerald-600 font-bold block">
+                <span className="text-[11px] font-mono text-emerald-700 font-bold block">
                   ZATCA SIMPLIFIED TAX INVOICE
                 </span>
-                <h3 className="text-base font-bold text-slate-900">
+                <h3 className="text-base font-black text-[#0F172A]">
                   فاتورة ضريبية مبسطة
                 </h3>
               </div>
@@ -511,7 +510,7 @@ export default function SalesManager({
 
             {/* Simulated Receipt Header */}
             <div className="text-center pb-4 border-b border-dashed border-slate-200 text-xs space-y-1">
-              <div className="font-bold text-sm text-slate-900">شركة البدر للبرمجيات</div>
+              <div className="font-bold text-sm text-[#0F172A]">شركة البدر للبرمجيات</div>
               <div className="text-slate-500">الرقم الضريبي للمنشأة: 31098452100003</div>
               <div className="text-slate-500 font-mono">رقم الفاتورة: {selectedInvoiceForView.invoiceNumber}</div>
               <div className="text-slate-400 font-mono text-[11px]">تاريخ ووقت الإصدار: {selectedInvoiceForView.date} 14:32:10</div>
@@ -521,7 +520,7 @@ export default function SalesManager({
             <div className="py-3 border-b border-slate-100 text-xs space-y-1 text-slate-700">
               <div className="flex justify-between">
                 <span className="text-slate-500">اسم العميل:</span>
-                <span className="font-bold">{selectedInvoiceForView.customerName}</span>
+                <span className="font-bold text-slate-900">{selectedInvoiceForView.customerName}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">المنشأة:</span>
@@ -529,18 +528,18 @@ export default function SalesManager({
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">طريقة الدفع:</span>
-                <span>{selectedInvoiceForView.paymentMethod}</span>
+                <span className="font-semibold">{selectedInvoiceForView.paymentMethod}</span>
               </div>
             </div>
 
             {/* Items Table */}
             <div className="py-3">
               <table className="w-full text-xs">
-                <thead className="text-slate-500 border-b border-slate-200">
+                <thead className="text-slate-600 border-b border-slate-200">
                   <tr>
-                    <th className="py-1.5 text-right font-medium">البند</th>
-                    <th className="py-1.5 text-center font-medium">الكمية</th>
-                    <th className="py-1.5 text-left font-medium">السعر</th>
+                    <th className="py-1.5 text-right font-bold">البند</th>
+                    <th className="py-1.5 text-center font-bold">الكمية</th>
+                    <th className="py-1.5 text-left font-bold">السعر</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -565,15 +564,15 @@ export default function SalesManager({
                 <span>ضريبة القيمة المضافة (15%):</span>
                 <span className="font-mono tabular-nums">+{selectedInvoiceForView.vatAmount.toFixed(2)} ر.س</span>
               </div>
-              <div className="flex justify-between text-sm font-bold text-slate-900 pt-1 border-t border-dashed border-slate-200">
+              <div className="flex justify-between text-sm font-black text-slate-900 pt-1 border-t border-dashed border-slate-200">
                 <span>المجموع الإجمالي شامل الضريبة:</span>
-                <span className="font-mono tabular-nums text-emerald-600">{selectedInvoiceForView.grandTotal.toFixed(2)} ر.س</span>
+                <span className="font-mono tabular-nums text-emerald-700">{selectedInvoiceForView.grandTotal.toFixed(2)} ر.س</span>
               </div>
             </div>
 
             {/* QR Code Container */}
             <div className="mt-4 pt-3 border-t border-slate-100 text-center">
-              <div className="w-28 h-28 bg-slate-900 text-white text-[9px] font-mono flex items-center justify-center mx-auto p-2 rounded">
+              <div className="w-28 h-28 bg-[#0F172A] text-white text-[9px] font-mono flex items-center justify-center mx-auto p-2 rounded">
                 [ZATCA BASE64 ENCODED QR]
                 <br />
                 {selectedInvoiceForView.invoiceNumber}
@@ -586,7 +585,7 @@ export default function SalesManager({
             <div className="flex gap-3 mt-6">
               <button
                 onClick={() => window.print()}
-                className="flex-1 py-2.5 px-4 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
+                className="flex-1 py-2.5 px-4 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-xl flex items-center justify-center gap-1.5 transition-colors"
               >
                 <Printer className="w-4 h-4" />
                 <span>طباعة الفاتورة</span>

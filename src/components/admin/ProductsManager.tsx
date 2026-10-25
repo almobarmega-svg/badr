@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, Search, Edit2, Trash2, CheckCircle2, X, Package, ShieldCheck } from 'lucide-react';
+import { Plus, Search, Edit2, Trash2, X, ShieldCheck } from 'lucide-react';
 import { ProductRecord } from '../../types';
 
 interface ProductsManagerProps {
@@ -123,7 +123,7 @@ export default function ProductsManager({
               placeholder="ابحث في المنتجات والأنظمة..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pr-9 pl-4 py-2 text-xs rounded-lg border border-slate-200 bg-white text-slate-900 focus:outline-none focus:border-blue-600"
+              className="w-full pr-9 pl-4 py-2 text-xs rounded-lg border border-slate-200 bg-white text-slate-900 focus:outline-none focus:border-slate-900"
             />
           </div>
 
@@ -142,18 +142,18 @@ export default function ProductsManager({
 
         <button
           onClick={openAddModal}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-xs"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-lg transition-colors shadow-xs"
         >
           <Plus className="w-4 h-4" />
           <span>إضافة نظام / منتج جديد</span>
         </button>
       </div>
 
-      {/* Products Table */}
+      {/* Products Table in Navy & White */}
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-right text-xs">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold">
+            <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 font-bold">
               <tr>
                 <th className="py-3 px-4">اسم المنتج / النظام</th>
                 <th className="py-3 px-4">التصنيف</th>
@@ -174,32 +174,32 @@ export default function ProductsManager({
                 </tr>
               ) : (
                 filteredProducts.map((p) => (
-                  <tr key={p.id} className="hover:bg-slate-50/80 transition-colors">
+                  <tr key={p.id} className="hover:bg-slate-50 transition-colors">
                     <td className="py-3 px-4">
                       <div className="font-bold text-slate-900">{p.name}</div>
                       <div className="text-[11px] text-slate-400 line-clamp-1">{p.description}</div>
                     </td>
-                    <td className="py-3 px-4 font-medium">
+                    <td className="py-3 px-4 font-semibold text-slate-800">
                       {p.category === 'pos' && 'نقاط البيع'}
                       {p.category === 'erp' && 'نظام ERP'}
                       {p.category === 'mobile' && 'تطبيقات جوال'}
                       {p.category === 'clinic' && 'مراكز طبية'}
                       {p.category === 'custom' && 'مخصص'}
                     </td>
-                    <td className="py-3 px-4 font-mono font-bold text-blue-700 tabular-nums">
+                    <td className="py-3 px-4 font-mono font-bold text-[#0F172A] tabular-nums">
                       {p.price.toLocaleString('en-US')} ر.س
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-3 px-4 text-slate-700">
                       {p.billingType === 'yearly' && 'اشتراك سنوي'}
                       {p.billingType === 'monthly' && 'اشتراك شهري'}
                       {p.billingType === 'one-time' && 'ترخيص دائم'}
                     </td>
-                    <td className="py-3 px-4 font-mono tabular-nums">
+                    <td className="py-3 px-4 font-mono tabular-nums text-slate-800 font-medium">
                       {p.licensesAvailable} رخصة
                     </td>
                     <td className="py-3 px-4">
                       {p.zatcaReady ? (
-                        <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-semibold">
+                        <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-bold">
                           <ShieldCheck className="w-3.5 h-3.5" />
                           <span>معتمد</span>
                         </span>
@@ -211,8 +211,8 @@ export default function ProductsManager({
                       <span
                         className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold ${
                           p.status === 'active'
-                            ? 'bg-emerald-50 text-emerald-700'
-                            : 'bg-slate-100 text-slate-600'
+                            ? 'bg-slate-100 text-slate-900 border border-slate-200'
+                            : 'bg-slate-50 text-slate-500'
                         }`}
                       >
                         {p.status === 'active' ? 'نشط' : 'مسودة'}
@@ -222,7 +222,7 @@ export default function ProductsManager({
                       <div className="flex items-center justify-center gap-1">
                         <button
                           onClick={() => openEditModal(p)}
-                          className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded"
+                          className="p-1.5 text-slate-600 hover:text-slate-950 hover:bg-slate-100 rounded"
                           title="تعديل المنتج"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
@@ -280,7 +280,7 @@ export default function ProductsManager({
                   placeholder="مثال: البدر لنقاط البيع السحابية"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-blue-600"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-slate-900"
                 />
               </div>
 
@@ -292,7 +292,7 @@ export default function ProductsManager({
                   <select
                     value={category}
                     onChange={(e: any) => setCategory(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-blue-600"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-slate-900"
                   >
                     <option value="pos">نقاط البيع (POS)</option>
                     <option value="erp">نظام إدارة المؤسسات (ERP)</option>
@@ -309,7 +309,7 @@ export default function ProductsManager({
                   <select
                     value={billingType}
                     onChange={(e: any) => setBillingType(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-blue-600"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-slate-900"
                   >
                     <option value="yearly">اشتراك سنوي</option>
                     <option value="monthly">اشتراك شهري</option>
@@ -328,7 +328,7 @@ export default function ProductsManager({
                     min="0"
                     value={price}
                     onChange={(e) => setPrice(Number(e.target.value))}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 font-mono text-slate-900 focus:outline-none focus:border-blue-600"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 font-mono text-slate-900 focus:outline-none focus:border-slate-900"
                   />
                 </div>
 
@@ -341,7 +341,7 @@ export default function ProductsManager({
                     min="1"
                     value={licensesAvailable}
                     onChange={(e) => setLicensesAvailable(Number(e.target.value))}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 font-mono text-slate-900 focus:outline-none focus:border-blue-600"
+                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 font-mono text-slate-900 focus:outline-none focus:border-slate-900"
                   />
                 </div>
               </div>
@@ -355,7 +355,7 @@ export default function ProductsManager({
                   placeholder="وصف مختصر للوظائف وإدارة العمليات..."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-blue-600"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-slate-900"
                 />
               </div>
 
@@ -365,10 +365,10 @@ export default function ProductsManager({
                 </label>
                 <input
                   type="text"
-                  placeholder="ربط لحظي, دعم الفاتورة, تقارير مبيعات"
+                  placeholder="ربط سحابي فوري, دعم الفاتورة, تقارير مبيعات"
                   value={featuresText}
                   onChange={(e) => setFeaturesText(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-blue-600"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:border-slate-900"
                 />
               </div>
 
@@ -378,7 +378,7 @@ export default function ProductsManager({
                     type="checkbox"
                     checked={zatcaReady}
                     onChange={(e) => setZatcaReady(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 rounded"
+                    className="w-4 h-4 text-slate-900 rounded accent-slate-900"
                   />
                   <span className="font-bold text-slate-800">متوافق مع ZATCA الفاتورة الإلكترونية</span>
                 </label>
@@ -388,7 +388,7 @@ export default function ProductsManager({
                     type="checkbox"
                     checked={status === 'active'}
                     onChange={(e) => setStatus(e.target.checked ? 'active' : 'draft')}
-                    className="w-4 h-4 text-blue-600 rounded"
+                    className="w-4 h-4 text-slate-900 rounded accent-slate-900"
                   />
                   <span className="font-bold text-slate-800">تفعيل ونشر المنتج فوراً</span>
                 </label>
@@ -397,7 +397,7 @@ export default function ProductsManager({
               <div className="flex gap-3 pt-4 border-t border-slate-100">
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 px-4 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                  className="flex-1 py-2.5 px-4 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-lg transition-colors"
                 >
                   {editingProduct ? 'حفظ التعديلات' : 'إضافة المنتج'}
                 </button>

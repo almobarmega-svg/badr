@@ -8,10 +8,10 @@ export default function TestimonialsSection() {
         
         {/* Header */}
         <div className="max-w-3xl mb-14 text-right">
-          <div className="text-xs font-bold text-blue-700 mb-2">
+          <div className="text-xs font-bold text-slate-800 mb-2 uppercase tracking-wide">
             شهادات شركاء النجاح
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight text-balance">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight text-balance">
             ماذا يقول قادة الأعمال عن تجربة برمجيات البدر
           </h2>
         </div>
@@ -24,7 +24,7 @@ export default function TestimonialsSection() {
               className="bg-white p-8 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between"
             >
               <div>
-                <Quote className="w-8 h-8 text-blue-200 mb-4 rotate-180" />
+                <Quote className="w-8 h-8 text-slate-300 mb-4 rotate-180" />
                 <p className="text-slate-700 text-sm sm:text-base leading-relaxed mb-6 font-medium">
                   "{item.quote}"
                 </p>
@@ -32,11 +32,11 @@ export default function TestimonialsSection() {
 
               {/* Attribution */}
               <div className="pt-4 border-t border-slate-100 text-right">
-                <div className="text-sm font-bold text-slate-900">
+                <div className="text-sm font-black text-[#0F172A]">
                   {item.author}
                 </div>
                 <div className="text-xs text-slate-500 mt-0.5">
-                  {item.position} · <span className="text-slate-700 font-medium">{item.company}</span>
+                  {item.position} · <span className="text-slate-800 font-bold">{item.company}</span>
                 </div>
                 <div className="text-[11px] text-slate-400 mt-0.5">
                   {item.location}

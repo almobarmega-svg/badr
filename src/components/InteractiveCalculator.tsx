@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calculator, Check, ArrowLeft, HelpCircle } from 'lucide-react';
+import { Check, ArrowLeft } from 'lucide-react';
 
 interface CalculatorProps {
   onSelectPlan: (planDetails: string) => void;
@@ -65,10 +65,10 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
         
         {/* Header */}
         <div className="max-w-3xl mb-12 text-right">
-          <div className="text-xs font-bold text-blue-700 mb-2">
+          <div className="text-xs font-bold text-slate-800 mb-2 uppercase tracking-wide">
             حاسبة الباقات وتقدير التكلفة
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight text-balance">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#0F172A] tracking-tight text-balance">
             خصص الباقة المناسبة لحجم وطبيعة عملك بدقة
           </h2>
           <p className="mt-3 text-base text-slate-600 text-balance">
@@ -76,7 +76,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
           </p>
         </div>
 
-        {/* Interactive Calculator Form Grid */}
+        {/* Interactive Calculator Form Grid in Navy & White */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Controls Panel (7 cols) */}
@@ -98,7 +98,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                       onClick={() => setSector(key)}
                       className={`p-3 text-center rounded-xl text-xs font-bold transition-all border ${
                         isSelected
-                          ? 'bg-blue-50 border-blue-600 text-blue-800 shadow-xs'
+                          ? 'bg-[#0F172A] border-[#0F172A] text-white shadow-xs'
                           : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
                       }`}
                     >
@@ -120,13 +120,13 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                   onClick={() => setDeployment('cloud')}
                   className={`p-4 rounded-xl text-right transition-all border ${
                     deployment === 'cloud'
-                      ? 'bg-blue-50/60 border-blue-600 text-slate-900'
+                      ? 'bg-slate-50 border-[#0F172A] text-slate-900'
                       : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-bold text-slate-900">سحابي (Cloud SaaS)</span>
-                    <span className="text-[11px] font-semibold text-blue-700">اشتراك سنوي</span>
+                    <span className="text-sm font-bold text-[#0F172A]">سحابي (Cloud SaaS)</span>
+                    <span className="text-[11px] font-bold text-slate-700">اشتراك سنوي</span>
                   </div>
                   <p className="text-xs text-slate-500 leading-normal">
                     يشمل الاستضافة السحابية الآمنة، النسخ الاحتياطي اليومي، وتحديثات النظام الدورية مجاناً.
@@ -138,13 +138,13 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                   onClick={() => setDeployment('onpremise')}
                   className={`p-4 rounded-xl text-right transition-all border ${
                     deployment === 'onpremise'
-                      ? 'bg-blue-50/60 border-blue-600 text-slate-900'
+                      ? 'bg-slate-50 border-[#0F172A] text-slate-900'
                       : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-bold text-slate-900">ترخيص مكتبي دائم</span>
-                    <span className="text-[11px] font-semibold text-slate-700">شراء لمرة واحدة</span>
+                    <span className="text-sm font-bold text-[#0F172A]">ترخيص مكتبي دائم</span>
+                    <span className="text-[11px] font-bold text-slate-700">شراء لمرة واحدة</span>
                   </div>
                   <p className="text-xs text-slate-500 leading-normal">
                     تثبيت البرنامج محلياً على أجهزة المنشأة وشبكتها الداخلية بملكية دائمة للترخيص.
@@ -153,14 +153,14 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
               </div>
             </div>
 
-            {/* 3. Branch & User Count Sliders / Steppers */}
+            {/* 3. Branch & User Count Sliders */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs font-bold text-slate-900">
                     عدد الفروع أو نقاط البيع:
                   </label>
-                  <span className="font-mono tabular-nums text-sm font-bold text-blue-700">
+                  <span className="font-mono tabular-nums text-sm font-bold text-[#0F172A]">
                     {branches} {branches === 1 ? 'فرع' : 'فروع'}
                   </span>
                 </div>
@@ -170,7 +170,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                   max="15"
                   value={branches}
                   onChange={(e) => setBranches(parseInt(e.target.value, 10))}
-                  className="w-full accent-blue-600 cursor-pointer"
+                  className="w-full accent-slate-900 cursor-pointer"
                 />
                 <div className="flex justify-between text-[11px] text-slate-400 font-mono mt-1">
                   <span>1 فرع</span>
@@ -183,7 +183,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                   <label className="text-xs font-bold text-slate-900">
                     عدد المستخدمين المتزامنين:
                   </label>
-                  <span className="font-mono tabular-nums text-sm font-bold text-blue-700">
+                  <span className="font-mono tabular-nums text-sm font-bold text-[#0F172A]">
                     {users} مستخدم
                   </span>
                 </div>
@@ -193,7 +193,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                   max="30"
                   value={users}
                   onChange={(e) => setUsers(parseInt(e.target.value, 10))}
-                  className="w-full accent-blue-600 cursor-pointer"
+                  className="w-full accent-slate-900 cursor-pointer"
                 />
                 <div className="flex justify-between text-[11px] text-slate-400 font-mono mt-1">
                   <span>1</span>
@@ -213,7 +213,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                     type="checkbox"
                     checked={includeZatcaPhase2}
                     onChange={(e) => setIncludeZatcaPhase2(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 rounded-sm accent-blue-600"
+                    className="w-4 h-4 text-slate-900 rounded-sm accent-slate-900"
                   />
                   <div className="text-xs">
                     <span className="font-bold text-slate-900">تفعيل الربط المباشر مع الفاتورة الإلكترونية (ZATCA)</span>
@@ -226,7 +226,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                     type="checkbox"
                     checked={includeMobileApp}
                     onChange={(e) => setIncludeMobileApp(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 rounded-sm accent-blue-600"
+                    className="w-4 h-4 text-slate-900 rounded-sm accent-slate-900"
                   />
                   <div className="text-xs">
                     <span className="font-bold text-slate-900">تطبيق الجوال للمبيعات والمناديب الميدانيين</span>
@@ -238,13 +238,13 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
 
           </div>
 
-          {/* Result Card & Recommendation (5 cols) */}
+          {/* Result Card & Recommendation in Deep Navy & White */}
           <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm text-right sticky top-24">
-            <div className="text-xs font-semibold text-blue-700 mb-1">
+            <div className="text-xs font-bold text-slate-500 mb-1">
               التوصية والتقدير المالي المقترح:
             </div>
             
-            <h3 className="text-xl font-bold text-slate-900 mb-2">
+            <h3 className="text-xl font-black text-[#0F172A] mb-2">
               {selectedConfig.recommendedSystem}
             </h3>
 
@@ -258,7 +258,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
                 {deployment === 'cloud' ? 'الاشتراك التقديري يبدأ من:' : 'تكلفة الترخيص التقديرية لمرة واحدة:'}
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-mono tabular-nums">
+                <span className="text-3xl sm:text-4xl font-black text-[#0F172A] font-mono tabular-nums">
                   {totalCalculated.toLocaleString('en-US')}
                 </span>
                 <span className="text-sm font-bold text-slate-700">
@@ -293,7 +293,7 @@ export default function InteractiveCalculator({ onSelectPlan }: CalculatorProps)
             {/* Primary Action Button */}
             <button
               onClick={handleBookSelectedPackage}
-              className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all shadow-sm active:scale-[0.98]"
+              className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-sm font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-xl transition-all shadow-sm active:scale-[0.98]"
             >
               <span>طلب هذا العرض واستلام تجربة مجانية</span>
               <ArrowLeft className="w-4 h-4" />
