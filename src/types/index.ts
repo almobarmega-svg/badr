@@ -46,6 +46,62 @@ export interface FaqItem {
   category: string;
 }
 
+export interface ProductRecord {
+  id: string;
+  name: string;
+  category: 'pos' | 'erp' | 'mobile' | 'clinic' | 'custom';
+  price: number;
+  billingType: 'monthly' | 'yearly' | 'one-time';
+  licensesAvailable: number;
+  description: string;
+  features: string[];
+  zatcaReady: boolean;
+  status: 'active' | 'draft' | 'archived';
+  image?: string;
+  createdAt: string;
+}
+
+export interface CustomerRecord {
+  id: string;
+  fullName: string;
+  companyName: string;
+  phone: string;
+  email: string;
+  city: string;
+  assignedSystem: string;
+  planType: 'سحابي سنوي' | 'سحابي شهري' | 'ترخيص دائم';
+  status: 'active' | 'trial' | 'expired';
+  branchesCount: number;
+  totalSpent: number;
+  joinDate: string;
+  notes?: string;
+}
+
+export interface SaleItem {
+  productId: string;
+  productName: string;
+  quantity: number;
+  unitPrice: number;
+  total: number;
+}
+
+export interface SaleRecord {
+  id: string;
+  invoiceNumber: string;
+  customerId: string;
+  customerName: string;
+  companyName: string;
+  date: string;
+  items: SaleItem[];
+  subtotal: number;
+  discount: number;
+  vatAmount: number; // 15% ZATCA VAT
+  grandTotal: number;
+  paymentMethod: 'مدى (Mada)' | 'تحويل بنكي' | 'بطاقة ائتمانية' | 'نقدي';
+  paymentStatus: 'paid' | 'pending' | 'cancelled';
+  zatcaQrCode?: string;
+}
+
 export interface DemoRequestData {
   fullName: string;
   phone: string;
@@ -55,3 +111,4 @@ export interface DemoRequestData {
   branchesCount: string;
   notes?: string;
 }
+

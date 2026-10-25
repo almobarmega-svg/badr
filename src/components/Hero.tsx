@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { ArrowLeft, ShieldCheck, CheckCircle2, Monitor, Cloud, Smartphone } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, CheckCircle2, Monitor, Cloud, Smartphone, Sparkles } from 'lucide-react';
 import { HERO_IMAGE, COMPANY_INFO } from '../data/companyData';
 
 interface HeroProps {
   onOpenDemo: (system?: string) => void;
+  onOpenPosSimulator?: () => void;
 }
 
-export default function Hero({ onOpenDemo }: HeroProps) {
+export default function Hero({ onOpenDemo, onOpenPosSimulator }: HeroProps) {
   const [activeTabPreview, setActiveTabPreview] = useState<'pos' | 'erp' | 'mobile'>('pos');
 
   return (
@@ -45,12 +46,15 @@ export default function Hero({ onOpenDemo }: HeroProps) {
                 <ArrowLeft className="w-5 h-5" />
               </button>
 
-              <a
-                href="#products"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 hover:text-slate-900 transition-colors"
-              >
-                استعراض الحلول والأنظمة
-              </a>
+              {onOpenPosSimulator && (
+                <button
+                  onClick={onOpenPosSimulator}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-bold text-blue-800 bg-blue-50 border border-blue-200 rounded-xl hover:bg-blue-100 transition-colors shadow-2xs"
+                >
+                  <Sparkles className="w-4 h-4 text-blue-600" />
+                  <span>تشغيل محاكي الكاشير التفاعلي</span>
+                </button>
+              )}
             </div>
 
             {/* Value checklist - clean unboxed typography */}
@@ -145,12 +149,22 @@ export default function Hero({ onOpenDemo }: HeroProps) {
                   {activeTabPreview === 'pos' && (
                     <div className="flex justify-between items-center">
                       <span>إصدار فواتير كاشير فورية، ربط أجهزة مدى، باركود، وتوافق تام مع الطابعات الحرارية.</span>
-                      <button
-                        onClick={() => onOpenDemo('البدر لنقاط البيع POS')}
-                        className="text-blue-400 font-bold hover:underline shrink-0 mr-2"
-                      >
-                        تجربة
-                      </button>
+                      {onOpenPosSimulator ? (
+                        <button
+                          onClick={onOpenPosSimulator}
+                          className="text-emerald-400 font-bold hover:underline shrink-0 mr-2 flex items-center gap-1"
+                        >
+                          <Sparkles className="w-3 h-3" />
+                          <span>فتح المحاكي</span>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => onOpenDemo('البدر لنقاط البيع POS')}
+                          className="text-blue-400 font-bold hover:underline shrink-0 mr-2"
+                        >
+                          تجربة
+                        </button>
+                      )}
                     </div>
                   )}
                   {activeTabPreview === 'erp' && (

@@ -28,7 +28,7 @@ export default function DemoModal({ isOpen, onClose, initialSystem }: DemoModalP
   // Update initial system if prop changes
   useEffect(() => {
     if (initialSystem) {
-      setFormData((prev) => ({ ...prev, systemInterest: initialSystem }));
+      setFormData((prev: DemoRequestData) => ({ ...prev, systemInterest: initialSystem }));
     }
   }, [initialSystem]);
 
