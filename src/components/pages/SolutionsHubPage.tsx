@@ -263,42 +263,63 @@ export default function SolutionsHubPage({ onOpenDemo, onOpenPosSimulator }: Sol
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                  <h3 className="text-sm font-bold text-slate-900 mb-3">سرعة فائقة للمبيعات</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                    واجهة لمس متطورة تدعم أجهزة الباركود، طابعات الإيصالات الحرارية، وأدراج النقدية مع معالجة البيع في أقل من 3 ثوانٍ.
-                  </p>
-                  <ul className="text-xs text-slate-700 space-y-2">
-                    <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-slate-900" />دعم العمل في وضع عدم الاتصال (Offline)</li>
-                    <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-slate-900" />ربط مباشر مع شبكة أجهزة مدى والبطاقات</li>
-                  </ul>
-                </div>
-
-                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                  <h3 className="text-sm font-bold text-slate-900 mb-3">امتثال ZATCA 100%</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                    توليد الـ QR المشفر والـ UUID وختم التشفير الرقمي تلقائياً وإرسال الفاتورة عبر واتساب للعميل بضغطة زر.
-                  </p>
-                  <ul className="text-xs text-slate-700 space-y-2">
-                    <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-slate-900" />اعتماد رسمي للمرحلتين الأولى والثانية</li>
-                    <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-slate-900" />تحديثات معتمدة مجانية ومستمرة</li>
-                  </ul>
-                </div>
-
-                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-3">تجربة محاكاة الكاشير</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      انقر لتشغيل واجهة الكاشير الحية وتجربة تمرير المنتجات وحساب الضرائب وطباعة الفاتورة التجريبية.
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-8">
+                <div className="lg:col-span-7 space-y-4">
+                  <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <h3 className="text-base font-bold text-slate-900 mb-2">أجهزة الكاشير ونقاط البيع المحمولة الذكية (Smart 3D POS)</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                      أجهزة مبيعات متطورة تجمع شاشة اللمس السريعة، طابعة الفواتير الحرارية، وماسح الباركود في قبضة يد واحدة، مع دعم كامل للفاتورة الإلكترونية المعتمدة ZATCA والعمل بدون اتصال بالإنترنت.
                     </p>
+                    <div className="grid grid-cols-2 gap-3 text-xs">
+                      <div className="flex items-center gap-2 text-slate-700">
+                        <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                        <span>طباعة إيصالات ZATCA فورية</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-slate-700">
+                        <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                        <span>دفع ببطاقات مدى وApple Pay</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-slate-700">
+                        <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                        <span>بطارية ضخمة تدوم 24 ساعة</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-slate-700">
+                        <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                        <span>مزامنة سحابية مع الفروع والمخازن</span>
+                      </div>
+                    </div>
                   </div>
-                  <button
-                    onClick={onOpenPosSimulator}
-                    className="w-full mt-4 py-3 text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] rounded-xl transition-colors"
-                  >
-                    تشغيل المحاكي الآن
-                  </button>
+
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button
+                      onClick={onOpenPosSimulator}
+                      className="px-6 py-3 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-colors shadow-xs"
+                    >
+                      تشغيل محاكي الكاشير التفاعلي
+                    </button>
+                    <button
+                      onClick={() => onOpenDemo('أجهزة نقاط البيع المحمولة')}
+                      className="px-5 py-3 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors border border-slate-300"
+                    >
+                      طلب تسعير الأجهزة المحمولة
+                    </button>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-5 bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 shadow-xl group">
+                  <div className="relative aspect-4/3 w-full overflow-hidden">
+                    <img
+                      src="/images/handheld_pos_3d_blue_1792945988135.jpg"
+                      alt="جهاز كاشير متنقل ذكي ثلاثي الأبعاد باللون الأزرق"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-3 right-3 left-3 text-right">
+                      <span className="text-[10px] font-mono text-cyan-300 font-bold block">AL-BADR SMART POS X-1</span>
+                      <span className="text-xs font-bold text-white">جهاز محمول كاشير وطابعة وماسح في جهاز واحد</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

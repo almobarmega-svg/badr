@@ -10,6 +10,7 @@ export default function ProductsSection({ onOpenDemo }: ProductsSectionProps) {
   const [selectedProductId, setSelectedProductId] = useState<string>(PRODUCTS_DATA[0].id);
   const [interactiveCounter, setInteractiveCounter] = useState<number>(3);
   const [simulatedDiscount, setSimulatedDiscount] = useState<number>(10);
+  const [productImageError, setProductImageError] = useState<boolean>(false);
 
   const currentProduct = PRODUCTS_DATA.find((p) => p.id === selectedProductId) || PRODUCTS_DATA[0];
 
@@ -59,7 +60,10 @@ export default function ProductsSection({ onOpenDemo }: ProductsSectionProps) {
             return (
               <button
                 key={product.id}
-                onClick={() => setSelectedProductId(product.id)}
+                onClick={() => {
+                  setSelectedProductId(product.id);
+                  setProductImageError(false);
+                }}
                 className={`flex items-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-bold rounded-lg transition-all whitespace-nowrap focus-visible:outline-2 focus-visible:outline-slate-900 ${
                   isActive
                     ? 'bg-[#0F172A] text-white shadow-xs'
@@ -157,15 +161,32 @@ export default function ProductsSection({ onOpenDemo }: ProductsSectionProps) {
           <div className="lg:col-span-5 bg-[#0A192F] text-white flex flex-col justify-between border-t lg:border-t-0 lg:border-r border-slate-200">
             {/* High-res Image Preview */}
             <div className="relative aspect-4/3 w-full bg-slate-900 overflow-hidden">
-              <img
-                src={currentProduct.image}
-                alt={currentProduct.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-[#0A192F] via-[#0A192F]/20 to-transparent" />
-              <div className="absolute top-3 left-3 bg-[#0F172A]/90 backdrop-blur-md px-3 py-1 rounded text-[11px] font-mono text-slate-300 border border-slate-700">
-                LIVE PRODUCTION UI
+              {!productImageError ? (
+                <img
+                  src={currentProduct.image}
+                  alt={currentProduct.name}
+                  referrerPolicy="no-referrer"
+                  onError={() => setProductImageError(true)}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-linear-to-br from-[#0F172A] to-blue-950 p-6 flex flex-col justify-between text-right">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-mono text-cyan-400">AL-BADR 3D SYSTEMS</span>
+                    {getIcon(currentProduct.id)}
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-white mb-1">{currentProduct.name}</h4>
+                    <p className="text-xs text-slate-300">{currentProduct.tagline}</p>
+                  </div>
+                  <div className="text-xs text-emerald-400 font-mono">
+                    {currentProduct.zatcaCompliant ? 'معتمد لهيئة الزكاة والضريبة' : 'سحابي ومكتبي'}
+                  </div>
+                </div>
+              )}
+              <div className="absolute inset-0 bg-linear-to-t from-[#0A192F] via-[#0A192F]/20 to-transparent pointer-events-none" />
+              <div className="absolute top-3 left-3 bg-[#0F172A]/90 backdrop-blur-md px-3 py-1 rounded text-[11px] font-mono text-cyan-300 border border-slate-700">
+                LIVE PRODUCTION HARDWARE 3D
               </div>
             </div>
 

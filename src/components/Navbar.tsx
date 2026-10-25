@@ -56,6 +56,24 @@ export default function Navbar({
                 </button>
               );
             })}
+
+            {/* Quick Link to 3D Handheld Devices */}
+            <button
+              onClick={() => {
+                if (activePage !== 'home') {
+                  onChangePage('home');
+                  setTimeout(() => {
+                    document.getElementById('handheld-pos')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 150);
+                } else {
+                  document.getElementById('handheld-pos')?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="px-3 py-1.5 rounded-lg text-xs font-bold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-colors whitespace-nowrap flex items-center gap-1.5 mr-1"
+            >
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+              <span>أجهزة المبيعات 3D</span>
+            </button>
           </nav>
 
           {/* Zone 3: Actions - POS Simulator, Admin Portal & Primary CTA in Navy & White */}

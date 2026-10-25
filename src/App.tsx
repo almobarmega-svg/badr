@@ -11,6 +11,7 @@ import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
 import DemoModal from './components/DemoModal';
 import LivePosSimulator from './components/interactive/LivePosSimulator';
+import ModernHandheldSales3D from './components/interactive/ModernHandheldSales3D';
 import AdminDashboard from './components/admin/AdminDashboard';
 import SolutionsHubPage from './components/pages/SolutionsHubPage';
 import ZatcaStudioPage from './components/pages/ZatcaStudioPage';
@@ -18,7 +19,7 @@ import RoiCalculatorPage from './components/pages/RoiCalculatorPage';
 import { useAdminStore } from './hooks/useAdminStore';
 import { 
   MessageSquare, LayoutDashboard, Sparkles, ShieldCheck, 
-  TrendingUp, Home, Database, Layers
+  TrendingUp, Home, Database, Layers, Smartphone
 } from 'lucide-react';
 import { COMPANY_INFO } from './data/companyData';
 
@@ -107,6 +108,14 @@ export default function App() {
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                    <a
+                      href="#handheld-pos"
+                      className="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors flex items-center gap-1.5 shadow-sm"
+                    >
+                      <Smartphone className="w-3.5 h-3.5 text-cyan-300" />
+                      <span>أجهزة المبيعات 3D</span>
+                    </a>
+
                     <button
                       onClick={() => setCurrentPage('solutions')}
                       className="px-4 py-2 text-xs font-bold text-slate-900 bg-white hover:bg-slate-100 rounded-lg transition-colors flex items-center gap-1.5 shadow-sm"
@@ -134,6 +143,12 @@ export default function App() {
                 </div>
               </div>
             </section>
+
+            {/* Modern Handheld Sales Devices 3D Showcase */}
+            <ModernHandheldSales3D
+              onOpenDemo={handleOpenDemo}
+              onOpenPosSimulator={() => setIsPosSimulatorOpen(true)}
+            />
 
             <ProductsSection onOpenDemo={handleOpenDemo} />
             <ServicesSection onOpenDemo={handleOpenDemo} />

@@ -21,6 +21,9 @@ interface PosProduct {
 }
 
 const SAMPLE_POS_ITEMS: PosProduct[] = [
+  { id: 'pos-item-handheld-1', name: 'جهاز كاشير متنقل ذكي (Smart POS X-1 Blue)', category: 'أجهزة ونقاط بيع', price: 1450, barcode: '6281001009' },
+  { id: 'pos-item-handheld-2', name: 'محطة مناديب المبيعات والتوزيع (Van Sales Terminal)', category: 'أجهزة ونقاط بيع', price: 1850, barcode: '6281001010' },
+  { id: 'pos-item-handheld-3', name: 'منظومة نقاط البيع المزدوجة السحابية (Duo Cloud POS)', category: 'أجهزة ونقاط بيع', price: 2200, barcode: '6281001011' },
   { id: 'pos-item-1', name: 'اشتراك سنوي - البدر POS Pro', category: 'تراخيص برمجية', price: 1850, barcode: '6281001001' },
   { id: 'pos-item-2', name: 'طابعة فواتير حرارية USB / LAN', category: 'أجهزة ونقاط بيع', price: 650, barcode: '6281001002' },
   { id: 'pos-item-3', name: 'قارئ باركود لاسلكي 2D (QR)', category: 'أجهزة ونقاط بيع', price: 380, barcode: '6281001003' },

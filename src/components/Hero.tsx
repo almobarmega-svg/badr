@@ -9,6 +9,21 @@ interface HeroProps {
 
 export default function Hero({ onOpenDemo, onOpenPosSimulator }: HeroProps) {
   const [activeTabPreview, setActiveTabPreview] = useState<'pos' | 'erp' | 'mobile'>('pos');
+  const [heroImageError, setHeroImageError] = useState(false);
+
+  // Dynamic preview image based on active tab
+  const getPreviewImage = () => {
+    switch (activeTabPreview) {
+      case 'pos':
+        return '/images/hero_handheld_pos_enterprise_1792945986584.jpg';
+      case 'erp':
+        return '/images/cloud_pos_handheld_duo_1792945989475.jpg';
+      case 'mobile':
+        return '/images/mobile_sales_device_3d_1792945988780.jpg';
+      default:
+        return HERO_IMAGE;
+    }
+  };
 
   return (
     <section className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-slate-200 bg-linear-to-b from-white via-slate-50/50 to-slate-100/60">
@@ -79,26 +94,41 @@ export default function Hero({ onOpenDemo, onOpenPosSimulator }: HeroProps) {
             <div className="relative rounded-2xl overflow-hidden bg-[#0A192F] border border-slate-300 shadow-xl">
               {/* Image Frame */}
               <div className="relative aspect-16/10 w-full bg-slate-900 overflow-hidden">
-                <img
-                  src={HERO_IMAGE}
-                  alt="فريق هندسة وتطوير أنظمة البدر للبرمجيات"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-[#0A192F] via-[#0A192F]/30 to-transparent" />
+                {!heroImageError ? (
+                  <img
+                    src={getPreviewImage()}
+                    alt="أجهزة نقاط البيع المحمولة الذكية ثلاثية الأبعاد - شركة البدر للبرمجيات"
+                    referrerPolicy="no-referrer"
+                    onError={() => setHeroImageError(true)}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 p-8 flex flex-col justify-between text-right">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono text-cyan-400">AL-BADR 3D SMART POS</span>
+                      <Smartphone className="w-6 h-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-1">أجهزة المبيعات المحمولة الحديثة</h3>
+                      <p className="text-xs text-slate-300">كاشير وطابعة فواتير ZATCA وماسح باركود في جهاز واحد</p>
+                    </div>
+                    <div className="text-xs font-mono text-emerald-400">100% ZATCA Compliant</div>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-linear-to-t from-[#0A192F] via-[#0A192F]/30 to-transparent pointer-events-none" />
                 
-                {/* Floating ZATCA Indicator */}
-                <div className="absolute top-4 right-4 bg-[#0F172A]/90 backdrop-blur-md text-white border border-slate-700 rounded-lg px-3 py-2 flex items-center gap-2 text-xs font-semibold">
+                {/* Floating 3D Device / ZATCA Indicator */}
+                <div className="absolute top-4 right-4 bg-[#0F172A]/90 backdrop-blur-md text-white border border-blue-500/40 rounded-lg px-3 py-1.5 flex items-center gap-2 text-xs font-semibold shadow-lg">
                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  <span>معتمد للفاتورة الإلكترونية (ZATCA)</span>
+                  <span>أجهزة مبيعات 3D معتمدة للزكاة (ZATCA)</span>
                 </div>
 
                 <div className="absolute bottom-4 right-4 left-4 text-white">
-                  <p className="text-xs text-slate-300 font-mono tracking-wide">
-                    AL-BADR ENTERPRISE CLOUD ARCHITECTURE
+                  <p className="text-xs text-cyan-300 font-mono tracking-wide">
+                    AL-BADR 3D SMART HANDHELD POS SYSTEM
                   </p>
                   <p className="text-sm font-bold text-white mt-0.5">
-                    بنية سحابية فائقة الأمان مع نسخ احتياطي وتحديثات لحظية
+                    أجهزة كاشير محمولة ذكية باللون الأزرق الأنيق مع تحصيل فوري وطباعة إيصالات
                   </p>
                 </div>
               </div>

@@ -112,3 +112,30 @@ export interface DemoRequestData {
   notes?: string;
 }
 
+export interface HandheldSalesDevice {
+  id: string;
+  name: string;
+  modelCode: string;
+  tagline: string;
+  image: string;
+  colorTheme: string;
+  priceSAR: number;
+  bestFor: string;
+  features: string[];
+  specs: {
+    display: string;
+    printer: string;
+    battery: string;
+    connectivity: string;
+    nfcPayment: string;
+    weight: string;
+  };
+  sampleSales: {
+    id: string;
+    item: string;
+    amount: number;
+    time: string;
+    status: string;
+  }[];
+}
+

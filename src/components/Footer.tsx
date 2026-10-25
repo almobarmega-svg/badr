@@ -84,6 +84,20 @@ export default function Footer({ onOpenDemo, onChangePage }: FooterProps) {
               </li>
               <li>
                 <button
+                  onClick={() => {
+                    onChangePage?.('home');
+                    setTimeout(() => {
+                      document.getElementById('handheld-pos')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 150);
+                  }}
+                  className="hover:text-cyan-300 text-blue-300 font-semibold transition-colors text-right flex items-center gap-1.5"
+                >
+                  <span>أجهزة المبيعات المحمولة 3D</span>
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-blue-900/80 text-cyan-200 border border-blue-700/50">جديد</span>
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onChangePage?.('roi')}
                   className="hover:text-white transition-colors text-right"
                 >
